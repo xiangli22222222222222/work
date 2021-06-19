@@ -1,0 +1,9 @@
+<!doctype html>
+<title>Download</title>
+<h1>Directory listing</h1>
+<hr>
+<ul>
+    {% for file in files %}
+    <li><a href="{{file}}">{{file}}</a></li>
+    {% endfor %}
+</ul>

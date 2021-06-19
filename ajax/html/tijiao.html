@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>表单</title>
+  <script>
+    function changeName() {
+      document.getElementById("idmyname").innerHTML = "我的"
+    }
+  </script>
+</head>
+
+<body>
+  <form action="http://127.0.0.1:8080/getsum" target="_blank" style="background-color: #00ffff;">
+    <fieldset>
+      <legend>显示有边框</legend>
+      name :<input type="text" name="myname" value="民众" size="30"><br />
+      age : <input type="number" name="myage" value="83" size="10"><br />
+    </fieldset><br />
+
+
+    <input type="radio" name="sex" value="male">男
+    <input type="radio" name="sex" value="female">女
+    <input type="radio" name="sex" value="none">无<br />
+
+
+    <input type="checkbox" name="vehicle" value="Bike">I have a bike
+    <input type="checkbox" name="vehicle" value="Car">I have a car<br />
+
+
+
+    <select name="cars">
+      <option value="wulinghongguang">五菱宏光</option>
+      <option value="volvo">沃尔沃</option>
+      <option value="audi" selected>奥迪</option>
+      <option value="zhixuan">丰田致炫</option>
+    </select><br /><br />
+
+    <textarea rows="5" cols="30">
+      最好找到加市长，让加市长做这种得罪人的事情，他可不一定愿意呢。疾风知劲草，版当时称臣。为了避免这件事对市政府造成不良影响。短短几天市委书记登门拜访。每次送遭殃都会带来难题。自然是权力支持市委与你的工作。这可不是市委一边的工作，也是市政府一边的工作。但是两规干部还是由市委出面比较好。我们的顾虑是担心打草惊蛇，朝阳不是也能传召二人吗。宋枣阳看到孙耀祖不停推脱，越来越不耐烦。贾玉龙来到孙耀祖办公室，好家伙这是要召开常委会呀。就知道不会有什么好事。都民生说，这件事就由我来介绍给加市长吧。怎么所有恶心事都往我身上推呢。
+    </textarea><br />
+
+
+
+    <input type="submit" value="提交"><br />
+    <input type="button" value="按钮" onclick="changeName()">
+
+  </form><br />
+
+  <p id="idmyname">我的谢谢谢谢</p>
+  <button onclick="changeName()">我的按钮</button>
+</body>
+
+</html>
