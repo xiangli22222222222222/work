@@ -24,7 +24,9 @@ def gogogo():
     while 1:
         # 不停的连接数据库，获取数据
         data=mysql_db.mysql_db(-32)
-
+        while not data:
+            time.sleep(5)
+            data=mysql_db.mysql_db(-32)
         #每次获取数据以后，计数器置零
         m=0
 

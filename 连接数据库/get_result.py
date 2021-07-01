@@ -38,7 +38,7 @@ def getresult(file_path,zaoyan,get_time):
             i+=1
             k+=1
         m+=1
-
+        os.remove(file_path1)
         #把处理过的文件删除
     # print(len(r))
     sum=0
@@ -72,7 +72,7 @@ def getresult(file_path,zaoyan,get_time):
 
 if __name__=='__main__':
     #测试用
-    # file_path='E:/work/123/pic2/'
+    # file_path='E:/work/123/pic/'
     # zaoyan=1
     # get_time=datetime.datetime.now()
     getresult(file_path,zaoyan,get_time)

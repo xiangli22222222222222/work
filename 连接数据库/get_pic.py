@@ -25,11 +25,15 @@ def getpic(file_name,file_path):
         i = i + 1
         if (i % timeF == 0):
             j = j + 1
-            if j>6:
+            if j>0:
                 save_image(frame,file_path,j)
             # print('save image:', i)
         success, frame = videoCapture.read()
     #干完活把视频删掉
-
+    videoCapture.release()
+    # os.remove(file_name)
 if __name__=='__main__':
-    getpic()
+    # 测试用
+    # file_name="E:/work/123/01-47-25.avi"
+    # file_path="E:/work/123/pic/"
+    getpic(file_name,file_path)
