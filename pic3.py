@@ -1,13 +1,15 @@
-from flask import Flask, render_template
-import os
+import datetime
+import time
 
-PEOPLE_FOLDER = os.path.join('static', 'people_photo')
+now=datetime.datetime.now()
+print(type(now))
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
+date_time=datetime.datetime(2021, 6, 28, 0, 3, 15)
 
-@app.route('/')
-@app.route('/index')
-def show_index():
-    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'shovon.jpg')
-    return render_template("index.html", user_image = full_filename)
+print(type(date_time))
+
+while now < date_time:
+    now = datetime.datetime.now()
+    time.sleep(5)
+    print("wait a monent!")
+print(datetime.datetime.now())

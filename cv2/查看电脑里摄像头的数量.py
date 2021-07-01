@@ -9,9 +9,9 @@ while n<6:
     rep,frame=cap.read()
 
     if rep:
+          print("电脑里有%s个摄像头"%n)
           n=n+1
     else:
-        print(n)
-        break
+          break
 
 print(n)

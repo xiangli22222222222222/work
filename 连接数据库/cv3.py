@@ -1,19 +1,23 @@
 import cv2
+from datetime import datetime
+import time
+import os
 def captureVideoFromCamera():
     cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     WIDTH = 1280
     HEIGHT = 720
-    FILENAME = r'e:\work\myvideo2.avi'
+    file_path = ('e:/work/')
+    FILENAME = file_path + "/" + str(time.strftime("%H-%M-%S")) + ".avi"
 
-    FPS = 24
+    FPS = 10
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, WIDTH)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, HEIGHT)
-    cap.set(cv2.CAP_PROP_FPS, 24)
+    cap.set(cv2.CAP_PROP_FPS, 10)
     # 建议使用XVID编码,图像质量和文件大小比较都兼顾的方案
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
-
+    start_time=datetime.now()
     out = cv2.VideoWriter(FILENAME, fourcc=fourcc, fps=FPS,frameSize=(WIDTH,HEIGHT))
-    print(cap.get(3))
+
     if not cap.isOpened():
         print("Cannot open camera")
         exit()
@@ -27,12 +31,16 @@ def captureVideoFromCamera():
         frame = cv2.flip(frame, 1)  # 水平翻转
         ret = out.write(frame)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        # 显示结果帧e
-        # cv2.imshow('frame', frame)
-        # if cv2.waitKey(1) == ord('q'):  break
+        # 录制5秒后停止
+        if (datetime.now() - start_time).seconds == 5:
+            cap.release()
+            print("录制结束")
+            break
+        # 监测到ESC按键也停止
     # 完成所有操作后，释放捕获器
     out.release()
     cap.release()
     cv2.destroyAllWindows()
-print("luzhijieshu")
-captureVideoFromCamera()
+if __name__=='__main__':
+    captureVideoFromCamera()
+    print("任务完成！")
