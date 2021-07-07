@@ -2,7 +2,7 @@ import cv2
 from datetime import datetime
 import time
 def captureVideoFromCamera():
-    cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     n=0
     WIDTH = 1280
     HEIGHT = 720

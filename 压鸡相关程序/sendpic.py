@@ -12,7 +12,6 @@ def send_message(token_2,datetime_1,photo_time):
 
     #发送请求
     url="https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token="+token_2
-    datetime_1=datetime_1+datetime.timedelta(hours=8)
     datetime_1=datetime.datetime.strftime(datetime_1,'%H:%M:%S')
     send_json={	"touser": "@all",
 	"toparty": "@all",

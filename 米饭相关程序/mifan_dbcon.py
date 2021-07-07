@@ -13,11 +13,11 @@ def mysql_db(i):
     cur = db.cursor()
     # 取最近24小时以内的数据
     now_time=datetime.datetime.now() + datetime.timedelta(days=0,hours=i)
+    print(now_time)
 
     # sql语法
-    sql = "SELECT * FROM datastreamsonoff WHERE (datastreamsonoff.key = '%s' OR datastreamsonoff.key = '%s') and datastreamsonoff.create_date > '%s' ORDER BY datastreamsonoff.create_date ASC" % (
-        'token 0870c9a90075b54639524eae86304a06202787c8', 'token d254b573257ed1078c30f5fcc8171a31dbc3064d',
-        now_time)
+    sql = "SELECT * FROM datastreamsdevice WHERE (datastreamsdevice.key = '%s'  and datastreamsdevice.create_date > '%s') ORDER BY datastreamsdevice.create_date ASC" % (
+        'token TCS_Hmj_ChengMi0n8cb81f117897a36880atend', now_time)
     # 执行查询操作
     cur.execute(sql)
     data = cur.fetchall()
@@ -27,5 +27,10 @@ def mysql_db(i):
 
 
 if __name__=='__main__':
-
-     mysql_db()
+    data=mysql_db(-24)
+    i=0
+    for data1 in data:
+        print(data1)
+        if float(data1[10])==2.65:
+            i+=1
+    print(i)

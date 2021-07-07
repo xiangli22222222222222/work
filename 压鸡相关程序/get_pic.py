@@ -31,7 +31,7 @@ def getpic(file_name,file_path):
         success, frame = videoCapture.read()
     #干完活把视频删掉
     videoCapture.release()
-    # os.remove(file_name)
+    os.remove(file_name)
 if __name__=='__main__':
     # 测试用
     # file_name="E:/work/123/01-47-25.avi"

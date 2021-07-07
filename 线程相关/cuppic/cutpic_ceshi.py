@@ -30,7 +30,7 @@ def CropImage4File(filepath, destpath,y):
 
 
 if __name__ == '__main__':
-    filepath = 'e:\\\work\\cutpic\\'  # 源图像
+    filepath = '/cutpic1\\'  # 源图像
     destpath = 'e:\\work\\cutpic_resize\\'  # resized images saved here
     y=getcoor.getcoor(1)
     CropImage4File(filepath, destpath,y)
