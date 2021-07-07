@@ -1,7 +1,21 @@
-import os
-f=os.listdir("C:/Users/admin/Desktop/m")
+import os.path
 
-for f1 in f:
-    print(f1)
-    (f2,f3)=os.path.splitext(f1)
-    print (f2)
+import datetime
+
+print(__file__)
+
+filename=os.path.dirname( os.path.abspath(__file__) )+'/12345.txt'
+
+print(filename)
+
+
+get_time=os.path.getmtime(filename)
+print(get_time)
+
+get_time=datetime(get_time)
+
+print(get_time)
+now_time=datetime.datetime.now()
+seconds=(now_time-get_time).seconds
+
+print (seconds)
