@@ -2,7 +2,8 @@ import datetime
 import mysql_dbggg
 import sendmessage_gg
 import mifan_wendu
-
+import mifan_chengzhong
+import mifan_jiashui
 
 def get_data():
 
@@ -37,6 +38,7 @@ def work_data():
 
     for i in range (len(li)):
         date_time_zf=li[i][4]
+        date_time_meijia=li[i][4]
         date_time_zf=date_time_zf+datetime.timedelta(hours=8)
 
         if li[i][10]:
@@ -70,6 +72,8 @@ def work_data():
                     break
 
             content = str(li[i][7]) + "号蒸箱，" + str(li[i][8]) + "盘，开始： " + str(date_time_zf)+"结束： "+str(date_time1_zfjs)+"用时： "+str(zfys)+" 分钟，100度："+str(subtract)+"分钟"
+            sendmessage_gg.send_message(appsecret, content, ad_id)
+
         else:
             now_time2=datetime.datetime.now()
 
@@ -80,8 +84,52 @@ def work_data():
             else:
                 content ="我是一条操作失误的点火记录！"
 
-        sendmessage_gg.send_message(appsecret,content,ad_id)
+            sendmessage_gg.send_message(appsecret,content,ad_id)
 
+
+       #处理称重数据： 把蒸饭前的30分钟的称重信息拿回来
+
+        weight=mifan_chengzhong.chengzhong(date_time_meijia)
+        print(len(weight))
+        count_265=0
+        count_255=0
+        count_275=0
+        count_26=0
+        count_27=0
+        len_weigh=len(weight)
+        len_weigh-=1
+        for l in range(len_weigh):
+            print(weight[l+1][10])
+            if float(weight[l][10])==2.65 and float(weight[l+1][10])<0:
+                print("我拿到了啊，谁说我没拿到")
+                count_265+=1
+            elif float(weight[l][10])==2.55 and float(weight[l+1][10])<0:
+                count_255+=1
+            elif float(weight[l][10]) == 2.6 and float(weight[l+1][10])<0:
+                count_26 += 1
+            elif float(weight[l][10]) == 2.7 and float(weight[l+1][10])<0:
+                count_27 += 1
+            elif float(weight[l][10]) == 2.75 and float(weight[l+1][10])<0:
+                count_275 += 1
+
+        count=count_27+count_265+count_255+count_275+count_265
+        content = "本次有效："+str(count)+"标准："+str(count_265)+"2.6和2.7分别："+str(count_26)+str(count_27)+"2.55和2.75分别: "+str(count_255)+str(count_275)
+        sendmessage_gg.send_message(appsecret, content, ad_id)
+
+        #处理加水数据：
+
+        jiashui = mifan_jiashui.jiashui(date_time_meijia)
+        len_jiashui=len(jiashui)
+        len_jiashui-=1
+        count_jiashui=0
+        for n in range(len_jiashui):
+            if int(jiashui[n][8])==1761:
+                count_jiashui+=1
+
+
+        content = "本次加水："+str(count_jiashui)
+
+        sendmessage_gg.send_message(appsecret, content, ad_id)
 
 if __name__=='__main__':
     work_data()
